@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 /* Izgara özellikleri */
 $grid-columns: 16;
 $grid-gutter: 30px;
@@ -29,6 +31,74 @@ $screen-largescreen-min: 1200px;
 $screen-largescreen-max: 1919px;
 $screen-widescreen-min: 1920px;
 
+/* .col sınıflarını biriktirmek için $class-column isminde bir değişken oluşturuyoruz */
+$class-column: ".#{$selector-column}-#{$selector-mobile}-1, \
+				.#{$selector-column}-#{$selector-tablet}-1, \
+				.#{$selector-column}-#{$selector-computer}-1, \
+				.#{$selector-column}-#{$selector-largescreen}-1, \
+				.#{$selector-column}-#{$selector-widescreen}-1, \
+				.#{$selector-column}-#{$selector-mobileDevices}-1, \
+				.#{$selector-column}-#{$selector-personalComputers}-1, \
+				.#{$selector-column}-#{$selector-allDevices}-1";
+
+/* .visible sınıflarını biriktirmek için $class-visible isminde bir değişken oluşturuyoruz */
+$class-visible: ".#{$selector-visible}-#{$selector-mobile}, \
+				.#{$selector-visible}-#{$selector-tablet}, \
+				.#{$selector-visible}-#{$selector-computer}, \
+				.#{$selector-visible}-#{$selector-largescreen}, \
+				.#{$selector-visible}-#{$selector-widescreen}, \
+				.#{$selector-visible}-#{$selector-mobileDevices}, \
+				.#{$selector-visible}-#{$selector-personalComputers}, \
+				.#{$selector-visible}-#{$selector-allDevices}";
+
+/* .hidden sınıflarını biriktirmek için $class-hidden isminde bir değişken oluşturuyoruz */
+$class-hidden: ".#{$selector-hidden}-#{$selector-mobile}, \
+				.#{$selector-hidden}-#{$selector-tablet}, \
+				.#{$selector-hidden}-#{$selector-computer}, \
+				.#{$selector-hidden}-#{$selector-largescreen}, \
+				.#{$selector-hidden}-#{$selector-widescreen}, \
+				.#{$selector-hidden}-#{$selector-mobileDevices}, \
+				.#{$selector-hidden}-#{$selector-personalComputers}, \
+				.#{$selector-hidden}-#{$selector-allDevices}";
+
+/* $grid-columns kadar bir for döngüsü oluşturuyoruz */
+@for $i from 2 through $grid-columns {
+
+	/* Her döngüde $class-column değişkeninin üzerine yeni verileri ekliyoruz */
+	$class-column: "#{$class-column}, \
+					.#{$selector-column}-#{$selector-mobile}-#{$i}, \
+					.#{$selector-column}-#{$selector-tablet}-#{$i}, \
+					.#{$selector-column}-#{$selector-computer}-#{$i}, \
+					.#{$selector-column}-#{$selector-largescreen}-#{$i}, \
+					.#{$selector-column}-#{$selector-widescreen}-#{$i}, \
+					.#{$selector-column}-#{$selector-mobileDevices}-#{$i}, \
+					.#{$selector-column}-#{$selector-personalComputers}-#{$i}, \
+					.#{$selector-column}-#{$selector-allDevices}-#{$i}";
+
+	/* Her döngüde $class-visible değişkeninin üzerine yeni verileri ekliyoruz */
+	$class-visible: "#{$class-visible}, \
+					.#{$selector-visible}-#{$selector-mobile}, \
+					.#{$selector-visible}-#{$selector-tablet}, \
+					.#{$selector-visible}-#{$selector-computer}, \
+					.#{$selector-visible}-#{$selector-largescreen}, \
+					.#{$selector-visible}-#{$selector-widescreen}, \
+					.#{$selector-visible}-#{$selector-mobileDevices}, \
+					.#{$selector-visible}-#{$selector-personalComputers}, \
+					.#{$selector-visible}-#{$selector-allDevices}";
+
+	/* Her döngüde $class-hidden değişkeninin üzerine yeni verileri ekliyoruz */
+	$class-hidden: "#{$class-hidden}, \
+					.#{$selector-hidden}-#{$selector-mobile}, \
+					.#{$selector-hidden}-#{$selector-tablet}, \
+					.#{$selector-hidden}-#{$selector-computer}, \
+					.#{$selector-hidden}-#{$selector-largescreen}, \
+					.#{$selector-hidden}-#{$selector-widescreen}, \
+					.#{$selector-hidden}-#{$selector-mobileDevices}, \
+					.#{$selector-hidden}-#{$selector-personalComputers}, \
+					.#{$selector-hidden}-#{$selector-allDevices}";
+
+}
+
 /* Kolonlar için gerekli kapsayıcı satır */
 .#{$selector-row} {
 
@@ -52,43 +122,25 @@ $screen-widescreen-min: 1920px;
 		clear: both;
 	}
 
-	/* Kolonları biriktirmek için $devices isminde bir değişken oluşturuyoruz */
-	$devices: " .#{$selector-column}-#{$selector-mobile}-1, \
-				.#{$selector-column}-#{$selector-tablet}-1, \
-				.#{$selector-column}-#{$selector-computer}-1, \
-				.#{$selector-column}-#{$selector-largescreen}-1, \
-				.#{$selector-column}-#{$selector-widescreen}-1, \
-				.#{$selector-column}-#{$selector-mobileDevices}-1, \
-				.#{$selector-column}-#{$selector-personalComputers}-1, \
-				.#{$selector-column}-#{$selector-allDevices}-1";
-
-	/* $grid-columns kadar bir for döngüsü oluşturuyoruz */
-	@for $i from 2 through $grid-columns {
-
-		/* Her döngüde $devices değişkeninin üzerine yeni verileri ekliyoruz */
-		$devices: " #{$devices}, \
-					.#{$selector-column}-#{$selector-mobile}-#{$i}, \
-					.#{$selector-column}-#{$selector-tablet}-#{$i}, \
-					.#{$selector-column}-#{$selector-computer}-#{$i}, \
-					.#{$selector-column}-#{$selector-largescreen}-#{$i}, \
-					.#{$selector-column}-#{$selector-widescreen}-#{$i}, \
-					.#{$selector-column}-#{$selector-mobileDevices}-#{$i}, \
-					.#{$selector-column}-#{$selector-personalComputers}-#{$i}, \
-					.#{$selector-column}-#{$selector-allDevices}-#{$i}";
-
-	}
-
-	/* For döngüsünde biriktirdiğimiz kolonlar */
-	#{$devices} {
+	/* For döngüsünde biriktirdiğimiz .col sınıflarını yazdırıyoruz */
+	#{$class-column} {
 		float: left;
+		position: relative;
 		padding-left: ($grid-gutter / 2);
 		padding-right: ($grid-gutter / 2);
 	}
 
 }
 
+/* For döngüsünde biriktirdiğimiz .visible sınıflarını yazdırıyoruz */
+#{$class-visible} {
+	display: none;
+}
 
-/* Media query'ler */
+/* For döngüsünde biriktirdiğimiz .hidden sınıflarını yazdırıyoruz */
+#{$class-hidden} {
+	display: block;
+}
 
 /* Ekran çözünürlüklerini döngüye sokabilmek için dizi olarak kaydediyoruz */
 $screenResolutions: ( "Mobile", $selector-mobile, nil, $screen-mobile-max ), 
@@ -140,6 +192,22 @@ $screenResolutions: ( "Mobile", $selector-mobile, nil, $screen-mobile-max ),
 			.#{$selector-column}-#{$selector}-#{$i} {
 				width: 100% / $grid-columns * $i;
 			}
+
+			/* Kolon ittirme sınıflarımızı oluşturuyoruz */
+			.#{$selector-column}-#{$selector}-#{$selector-push}-#{$i} {
+				left: 100% / $grid-columns * $i;
+			}
+
+			/* Kolon çekme sınıflarımızı oluşturuyoruz */
+			.#{$selector-column}-#{$selector}-#{$selector-pull}-#{$i} {
+				right: 100% / $grid-columns * $i;
+			}
+
+			/* Kolon offset sınıflarımızı oluşturuyoruz */
+			.#{$selector-column}-#{$selector}-#{$selector-offset}-#{$i} {
+				margin-left: 100% / $grid-columns * $i;
+			}
+
 		}
 
 	}
