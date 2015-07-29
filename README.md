@@ -1,6 +1,6 @@
 # Semantic Helper
 
-Semantic Helper is a helper library that I developed for use in my personal projects for Semantic UI.
+Semantic Helper is a CSS helper library that I developed for use in my personal projects for Semantic UI.
 
 ### Usage
 
