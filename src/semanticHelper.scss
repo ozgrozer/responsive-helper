@@ -128,6 +128,17 @@ $class-hidden: ".#{$selector-hidden}-#{$selector-mobile}, \
 		position: relative;
 		padding-left: ($grid-gutter / 2);
 		padding-right: ($grid-gutter / 2);
+
+		/* Kolona istersek gutter kadar margin-top verebiliriz */
+		&.mt {
+			margin-top: $grid-gutter;
+		}
+
+		/* Kolona istersek gutter kadar margin-bottom verebiliriz */
+		&.mb {
+			margin-bottom: $grid-gutter;
+		}
+
 	}
 
 }
@@ -201,11 +212,6 @@ $screenResolutions: ( "Mobile", $selector-mobile, nil, $screen-mobile-max ),
 			/* Kolon çekme sınıflarımızı oluşturuyoruz */
 			.#{$selector-column}-#{$selector}-#{$selector-pull}-#{$i} {
 				right: 100% / $grid-columns * $i;
-			}
-
-			/* Kolon offset sınıflarımızı oluşturuyoruz */
-			.#{$selector-column}-#{$selector}-#{$selector-offset}-#{$i} {
-				margin-left: 100% / $grid-columns * $i;
 			}
 
 		}
