@@ -1,15 +1,12 @@
-@charset "UTF-8";
-
-/* Izgara özellikleri */
+/* Grid settings */
 $grid-columns: 16;
 $grid-gutter: 30px;
 
-/* Seçiciler */
+/* Class prefixes */
 $selector-visible: "visible";
 $selector-hidden: "hidden";
 $selector-push: "push";
 $selector-pull: "pull";
-$selector-offset: "offset";
 $selector-row: "row";
 $selector-column: "col";
 $selector-mobile: "mb";
@@ -21,7 +18,7 @@ $selector-mobileDevices: "md";
 $selector-personalComputers: "pc";
 $selector-allDevices: "ad";
 
-/* Ekran çözünürlükleri */
+/* Screen resolutions */
 $screen-mobile-max: 767px;
 $screen-tablet-min: 768px;
 $screen-tablet-max: 991px;
@@ -31,7 +28,7 @@ $screen-largescreen-min: 1200px;
 $screen-largescreen-max: 1919px;
 $screen-widescreen-min: 1920px;
 
-/* .col sınıflarını biriktirmek için $class-column isminde bir değişken oluşturuyoruz */
+/* Declaring a variable for collect .column classes */
 $class-column: ".#{$selector-column}-#{$selector-mobile}-1, \
 				.#{$selector-column}-#{$selector-tablet}-1, \
 				.#{$selector-column}-#{$selector-computer}-1, \
@@ -41,30 +38,10 @@ $class-column: ".#{$selector-column}-#{$selector-mobile}-1, \
 				.#{$selector-column}-#{$selector-personalComputers}-1, \
 				.#{$selector-column}-#{$selector-allDevices}-1";
 
-/* .visible sınıflarını biriktirmek için $class-visible isminde bir değişken oluşturuyoruz */
-$class-visible: ".#{$selector-visible}-#{$selector-mobile}, \
-				.#{$selector-visible}-#{$selector-tablet}, \
-				.#{$selector-visible}-#{$selector-computer}, \
-				.#{$selector-visible}-#{$selector-largescreen}, \
-				.#{$selector-visible}-#{$selector-widescreen}, \
-				.#{$selector-visible}-#{$selector-mobileDevices}, \
-				.#{$selector-visible}-#{$selector-personalComputers}, \
-				.#{$selector-visible}-#{$selector-allDevices}";
-
-/* .hidden sınıflarını biriktirmek için $class-hidden isminde bir değişken oluşturuyoruz */
-$class-hidden: ".#{$selector-hidden}-#{$selector-mobile}, \
-				.#{$selector-hidden}-#{$selector-tablet}, \
-				.#{$selector-hidden}-#{$selector-computer}, \
-				.#{$selector-hidden}-#{$selector-largescreen}, \
-				.#{$selector-hidden}-#{$selector-widescreen}, \
-				.#{$selector-hidden}-#{$selector-mobileDevices}, \
-				.#{$selector-hidden}-#{$selector-personalComputers}, \
-				.#{$selector-hidden}-#{$selector-allDevices}";
-
-/* $grid-columns kadar bir for döngüsü oluşturuyoruz */
+/* Creating a for loop for collect all .column classes */
 @for $i from 2 through $grid-columns {
 
-	/* Her döngüde $class-column değişkeninin üzerine yeni verileri ekliyoruz */
+	/* Adding new columns in each loop */
 	$class-column: "#{$class-column}, \
 					.#{$selector-column}-#{$selector-mobile}-#{$i}, \
 					.#{$selector-column}-#{$selector-tablet}-#{$i}, \
@@ -75,66 +52,45 @@ $class-hidden: ".#{$selector-hidden}-#{$selector-mobile}, \
 					.#{$selector-column}-#{$selector-personalComputers}-#{$i}, \
 					.#{$selector-column}-#{$selector-allDevices}-#{$i}";
 
-	/* Her döngüde $class-visible değişkeninin üzerine yeni verileri ekliyoruz */
-	$class-visible: "#{$class-visible}, \
-					.#{$selector-visible}-#{$selector-mobile}, \
-					.#{$selector-visible}-#{$selector-tablet}, \
-					.#{$selector-visible}-#{$selector-computer}, \
-					.#{$selector-visible}-#{$selector-largescreen}, \
-					.#{$selector-visible}-#{$selector-widescreen}, \
-					.#{$selector-visible}-#{$selector-mobileDevices}, \
-					.#{$selector-visible}-#{$selector-personalComputers}, \
-					.#{$selector-visible}-#{$selector-allDevices}";
-
-	/* Her döngüde $class-hidden değişkeninin üzerine yeni verileri ekliyoruz */
-	$class-hidden: "#{$class-hidden}, \
-					.#{$selector-hidden}-#{$selector-mobile}, \
-					.#{$selector-hidden}-#{$selector-tablet}, \
-					.#{$selector-hidden}-#{$selector-computer}, \
-					.#{$selector-hidden}-#{$selector-largescreen}, \
-					.#{$selector-hidden}-#{$selector-widescreen}, \
-					.#{$selector-hidden}-#{$selector-mobileDevices}, \
-					.#{$selector-hidden}-#{$selector-personalComputers}, \
-					.#{$selector-hidden}-#{$selector-allDevices}";
-
 }
 
-/* Kolonlar için gerekli kapsayıcı satır */
+/* Container class for columns */
 .#{$selector-row} {
 
 	margin-left: -($grid-gutter / 2);
 	margin-right: -($grid-gutter / 2);
 
-	/* Satıra istersek gutter kadar margin-top verebiliriz */
+	/* We can add margin-top to row as gutter */
 	&.mt {
 		margin-top: $grid-gutter;
 	}
 
-	/* Satıra istersek gutter kadar margin-bottom verebiliriz */
+	/* We can add margin-bottom to row as gutter */
 	&.mb {
 		margin-bottom: $grid-gutter;
 	}
 
-	/* Satırdan sonra float'u temizliyoruz */
+	/* Clearing float */
 	&:after {
 		display: table;
 		content: " ";
 		clear: both;
 	}
 
-	/* For döngüsünde biriktirdiğimiz .col sınıflarını yazdırıyoruz */
+	/* Creating columns that collected in for loop */
 	#{$class-column} {
+
 		float: left;
 		position: relative;
 		padding-left: ($grid-gutter / 2);
 		padding-right: ($grid-gutter / 2);
 
-		/* Kolona istersek gutter kadar margin-top verebiliriz */
+		/* We can add margin-top to column as gutter */
 		&.mt {
 			margin-top: $grid-gutter;
 		}
 
-		/* Kolona istersek gutter kadar margin-bottom verebiliriz */
+		/* We can add margin-bottom to column as gutter */
 		&.mb {
 			margin-bottom: $grid-gutter;
 		}
@@ -143,27 +99,31 @@ $class-hidden: ".#{$selector-hidden}-#{$selector-mobile}, \
 
 }
 
-/* For döngüsünde biriktirdiğimiz .visible sınıflarını yazdırıyoruz */
-#{$class-visible} {
+/* Fix for .visible classes */
+.#{$selector-visible}-#{$selector-mobile}, 
+.#{$selector-visible}-#{$selector-tablet}, 
+.#{$selector-visible}-#{$selector-computer}, 
+.#{$selector-visible}-#{$selector-largescreen}, 
+.#{$selector-visible}-#{$selector-widescreen}, 
+.#{$selector-visible}-#{$selector-mobileDevices}, 
+.#{$selector-visible}-#{$selector-personalComputers}, 
+.#{$selector-visible}-#{$selector-allDevices} {
 	display: none;
 }
 
-/* For döngüsünde biriktirdiğimiz .hidden sınıflarını yazdırıyoruz */
-#{$class-hidden} {
+/* Fix for .hidden classes */
+.#{$selector-hidden}-#{$selector-mobile}, 
+.#{$selector-hidden}-#{$selector-tablet}, 
+.#{$selector-hidden}-#{$selector-computer}, 
+.#{$selector-hidden}-#{$selector-largescreen}, 
+.#{$selector-hidden}-#{$selector-widescreen}, 
+.#{$selector-hidden}-#{$selector-mobileDevices}, 
+.#{$selector-hidden}-#{$selector-personalComputers}, 
+.#{$selector-hidden}-#{$selector-allDevices} {
 	display: block;
 }
 
-/* Ekran çözünürlüklerini döngüye sokabilmek için dizi olarak kaydediyoruz */
-$screenResolutions: ( "Mobile", $selector-mobile, nil, $screen-mobile-max ), 
-					( "Tablet", $selector-tablet, $screen-tablet-min, $screen-tablet-max ), 
-					( "Computer", $selector-computer, $screen-computer-min, $screen-computer-max ), 
-					( "Largescreen", $selector-largescreen, $screen-largescreen-min, $screen-largescreen-max ), 
-					( "Widescreen", $selector-widescreen, $screen-widescreen-min, nil ),
-					( "Mobile devices", $selector-mobileDevices, nil, $screen-tablet-max ),
-					( "Personal computers", $selector-personalComputers, $screen-computer-min, nil ),
-					( "All devices", $selector-allDevices, 0, nil );
-
-/* $screenResolutions döngüsü içinde media query'ler için koşullu ifade kullanamadığımızdan dolayı mixin oluşturuyoruz */
+/* Mixin for media queries */
 @mixin mediaQueryCreator( $min, $max ) {
 	@if $min == nil {
 		@media( max-width: $max ) {
@@ -180,36 +140,46 @@ $screenResolutions: ( "Mobile", $selector-mobile, nil, $screen-mobile-max ),
 	}
 }
 
-/* $screenResolutions değişkenini döngüye sokuyoruz */
+/* Declaring a variable for media queries loop */
+$screenResolutions: ( "Mobile", $selector-mobile, nil, $screen-mobile-max ), 
+					( "Tablet", $selector-tablet, $screen-tablet-min, $screen-tablet-max ), 
+					( "Computer", $selector-computer, $screen-computer-min, $screen-computer-max ), 
+					( "Largescreen", $selector-largescreen, $screen-largescreen-min, $screen-largescreen-max ), 
+					( "Widescreen", $selector-widescreen, $screen-widescreen-min, nil ),
+					( "Mobile devices", $selector-mobileDevices, nil, $screen-tablet-max ),
+					( "Personal computers", $selector-personalComputers, $screen-computer-min, nil ),
+					( "All devices", $selector-allDevices, 0, nil );
+
+/* Loop for media queries */
 @each $screen, $selector, $min, $max in $screenResolutions {
 
 	/* #{$screen} */
 	@include mediaQueryCreator( $min, $max ) {
 
-		/* Kolon gizlemek için */
+		/* Creating .hidden classes */
 		.#{$selector-hidden}-#{$selector} {
 			display: none;
 		}
 
-		/* Kolon göstermek için */
+		/* Creating .visible classes */
 		.#{$selector-visible}-#{$selector} {
 			display: block;
 		}
 
-		/* $grid-columns kadar bir for döngüsü oluşturuyoruz */
+		/* Loop for grid columns */
 		@for $i from 1 through $grid-columns {
 
-			/* Kolonlarımızı oluşturuyoruz */
+			/* Creating .column classes */
 			.#{$selector-column}-#{$selector}-#{$i} {
 				width: 100% / $grid-columns * $i;
 			}
 
-			/* Kolon ittirme sınıflarımızı oluşturuyoruz */
+			/* Creating .push classes */
 			.#{$selector-column}-#{$selector}-#{$selector-push}-#{$i} {
 				left: 100% / $grid-columns * $i;
 			}
 
-			/* Kolon çekme sınıflarımızı oluşturuyoruz */
+			/* Creating .pull classes */
 			.#{$selector-column}-#{$selector}-#{$selector-pull}-#{$i} {
 				right: 100% / $grid-columns * $i;
 			}
