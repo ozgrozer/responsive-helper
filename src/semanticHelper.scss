@@ -5,6 +5,13 @@ $grid-gutter: 30px;
 /* Class prefixes */
 $selector-visible: "visible";
 $selector-hidden: "hidden";
+
+$selector-float-left: "fll";
+$selector-float-right: "flr";
+$selector-text-align-left: "tal";
+$selector-text-align-right: "tar";
+$selector-text-align-center: "tac";
+
 $selector-push: "push";
 $selector-pull: "pull";
 $selector-row: "row";
@@ -158,12 +165,37 @@ $screenResolutions: ( "Mobile", $selector-mobile, nil, $screen-mobile-max ),
 
 		/* Creating .hidden classes */
 		.#{$selector-hidden}-#{$selector} {
-			display: none;
+			display: none !important;
 		}
 
 		/* Creating .visible classes */
 		.#{$selector-visible}-#{$selector} {
-			display: block;
+			display: block !important;
+		}
+
+		/* Creating .float-left classes */
+		.#{$selector-float-left}-#{$selector} {
+			float: left !important;
+		}
+
+		/* Creating .float-right classes */
+		.#{$selector-float-right}-#{$selector} {
+			float: right !important;
+		}
+
+		/* Creating .text-align-left classes */
+		.#{$selector-text-align-left}-#{$selector} {
+			text-align: left !important;
+		}
+
+		/* Creating .text-align-right classes */
+		.#{$selector-text-align-right}-#{$selector} {
+			text-align: right !important;
+		}
+
+		/* Creating .text-align-center classes */
+		.#{$selector-text-align-center}-#{$selector} {
+			text-align: center !important;
 		}
 
 		/* Loop for grid columns */
