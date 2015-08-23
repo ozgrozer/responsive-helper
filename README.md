@@ -1,17 +1,17 @@
-# Semantic Helper
+# Responsive Helper
 
-Semantic Helper is a CSS helper library that I developed for use in my personal projects for Semantic UI.
+Responsive Helper is a CSS helper library that I developed for use in my personal projects.
 
 ## Requirements
 
-There is no requirement. It can use with or without Semantic UI.
+There is no requirement.
 
 ## Installation
 
-Just include the Semantic Helper CSS file in the `<head>` of your HTML document:
+Just include the Responsive Helper CSS file in the `<head>` of your HTML document:
 
 ```html
-<link rel="stylesheet" href="semanticHelper.min.css">
+<link rel="stylesheet" href="responsiveHelper.min.css">
 ```
 
 ## Features
@@ -19,6 +19,7 @@ Just include the Semantic Helper CSS file in the `<head>` of your HTML document:
 - Responsive grid system
 - Push, pull columns
 - Hidden, visible elements on any device
+- Responsive classes
 
 ## How to use
 
@@ -30,4 +31,4 @@ Soon.
 
 ## License
 
-Semantic Helper is licensed under the [MIT](https://github.com/ozgrozer/semanticHelper/blob/master/LICENCE).
+Responsive Helper is licensed under the [MIT](https://github.com/ozgrozer/semanticHelper/blob/master/LICENCE).
