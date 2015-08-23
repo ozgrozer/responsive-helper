@@ -2,16 +2,19 @@
 $grid-columns: 16;
 $grid-gutter: 30px;
 
+/* Screen resolutions */
+$screen-mobile-max: 767px;
+$screen-tablet-min: 768px;
+$screen-tablet-max: 991px;
+$screen-computer-min: 992px;
+$screen-computer-max: 1199px;
+$screen-largescreen-min: 1200px;
+$screen-largescreen-max: 1919px;
+$screen-widescreen-min: 1920px;
+
 /* Class prefixes */
 $selector-visible: "visible";
 $selector-hidden: "hidden";
-
-$selector-float-left: "fll";
-$selector-float-right: "flr";
-$selector-text-align-left: "tal";
-$selector-text-align-right: "tar";
-$selector-text-align-center: "tac";
-
 $selector-push: "push";
 $selector-pull: "pull";
 $selector-row: "row";
@@ -25,15 +28,46 @@ $selector-mobileDevices: "md";
 $selector-personalComputers: "pc";
 $selector-allDevices: "ad";
 
-/* Screen resolutions */
-$screen-mobile-max: 767px;
-$screen-tablet-min: 768px;
-$screen-tablet-max: 991px;
-$screen-computer-min: 992px;
-$screen-computer-max: 1199px;
-$screen-largescreen-min: 1200px;
-$screen-largescreen-max: 1919px;
-$screen-widescreen-min: 1920px;
+/* Classes for all devices */
+$classes:
+( "float", "none", "fln" ),
+( "float", "left", "fll" ),
+( "float", "right", "flr" ),
+
+( "clear", "none", "cln" ),
+( "clear", "left", "cll" ),
+( "clear", "right", "clr" ),
+( "clear", "both", "clb" ),
+
+( "text-align", "left", "tal" ),
+( "text-align", "center", "tac" ),
+( "text-align", "right", "tar" ),
+( "text-align", "justify", "taj" ),
+
+( "display", "none", "dn" ),
+( "display", "block", "db" ),
+( "display", "flex", "df" ),
+( "display", "inline-flex", "dif" ),
+( "display", "inline", "di" ),
+( "display", "inline-block", "dib" ),
+( "display", "list-item", "dli" ),
+( "display", "run-in", "dri" ),
+( "display", "compact", "dcp" ),
+( "display", "table", "dtb" ),
+( "display", "inline-table", "ditb" ),
+( "display", "table-caption", "dtbcp" ),
+( "display", "table-column", "dtbcl" ),
+( "display", "table-column-group", "dtbclg" ),
+( "display", "table-header-group", "dtbhg" ),
+( "display", "table-footer-group", "dtbfg" ),
+( "display", "table-row", "dtbr" ),
+( "display", "table-row-group", "dtbrg" ),
+( "display", "table-cell", "dtbc" ),
+( "display", "ruby", "drb" ),
+( "display", "ruby-base", "drbb" ),
+( "display", "ruby-base-group", "drbbg" ),
+( "display", "ruby-text", "drbt" ),
+( "display", "ruby-text-group", "drbtg" );
 
 /* Declaring a variable for collect .column classes */
 $class-column: ".#{$selector-column}-#{$selector-mobile}-1, \
@@ -61,21 +95,21 @@ $class-column: ".#{$selector-column}-#{$selector-mobile}-1, \
 
 }
 
+/* We can add margin-top to any element as gutter */
+.mt {
+	margin-top: $grid-gutter;
+}
+
+/* We can add margin-bottom to any element as gutter */
+.mb {
+	margin-bottom: $grid-gutter;
+}
+
 /* Container class for columns */
 .#{$selector-row} {
 
 	margin-left: -($grid-gutter / 2);
 	margin-right: -($grid-gutter / 2);
-
-	/* We can add margin-top to row as gutter */
-	&.mt {
-		margin-top: $grid-gutter;
-	}
-
-	/* We can add margin-bottom to row as gutter */
-	&.mb {
-		margin-bottom: $grid-gutter;
-	}
 
 	/* Clearing float */
 	&:after {
@@ -91,16 +125,6 @@ $class-column: ".#{$selector-column}-#{$selector-mobile}-1, \
 		position: relative;
 		padding-left: ($grid-gutter / 2);
 		padding-right: ($grid-gutter / 2);
-
-		/* We can add margin-top to column as gutter */
-		&.mt {
-			margin-top: $grid-gutter;
-		}
-
-		/* We can add margin-bottom to column as gutter */
-		&.mb {
-			margin-bottom: $grid-gutter;
-		}
 
 	}
 
@@ -163,39 +187,14 @@ $screenResolutions: ( "Mobile", $selector-mobile, nil, $screen-mobile-max ),
 	/* #{$screen} */
 	@include mediaQueryCreator( $min, $max ) {
 
-		/* Creating .hidden classes */
-		.#{$selector-hidden}-#{$selector} {
-			display: none !important;
-		}
+		/* Loop for responsive classes */
+		@each $parameter, $value, $prefix in $classes {
 
-		/* Creating .visible classes */
-		.#{$selector-visible}-#{$selector} {
-			display: block !important;
-		}
+			/* Creating responsive classes */
+			.#{$prefix}-#{$selector} {
+				#{$parameter}: #{$value} !important;
+			}
 
-		/* Creating .float-left classes */
-		.#{$selector-float-left}-#{$selector} {
-			float: left !important;
-		}
-
-		/* Creating .float-right classes */
-		.#{$selector-float-right}-#{$selector} {
-			float: right !important;
-		}
-
-		/* Creating .text-align-left classes */
-		.#{$selector-text-align-left}-#{$selector} {
-			text-align: left !important;
-		}
-
-		/* Creating .text-align-right classes */
-		.#{$selector-text-align-right}-#{$selector} {
-			text-align: right !important;
-		}
-
-		/* Creating .text-align-center classes */
-		.#{$selector-text-align-center}-#{$selector} {
-			text-align: center !important;
 		}
 
 		/* Loop for grid columns */
@@ -203,17 +202,17 @@ $screenResolutions: ( "Mobile", $selector-mobile, nil, $screen-mobile-max ),
 
 			/* Creating .column classes */
 			.#{$selector-column}-#{$selector}-#{$i} {
-				width: 100% / $grid-columns * $i;
+				width: 100% / $grid-columns * $i !important;
 			}
 
 			/* Creating .push classes */
 			.#{$selector-column}-#{$selector}-#{$selector-push}-#{$i} {
-				left: 100% / $grid-columns * $i;
+				left: 100% / $grid-columns * $i !important;
 			}
 
 			/* Creating .pull classes */
 			.#{$selector-column}-#{$selector}-#{$selector-pull}-#{$i} {
-				right: 100% / $grid-columns * $i;
+				right: 100% / $grid-columns * $i !important;
 			}
 
 		}
