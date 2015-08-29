@@ -30,44 +30,50 @@ $selector-allDevices: "ad";
 
 /* Classes for all devices */
 $classes:
-( "float", "none", "fln" ),
-( "float", "left", "fll" ),
-( "float", "right", "flr" ),
+("float", "none", "fln"),
+("float", "left", "fll"),
+("float", "right", "flr"),
 
-( "clear", "none", "cln" ),
-( "clear", "left", "cll" ),
-( "clear", "right", "clr" ),
-( "clear", "both", "clb" ),
+("position", "absolute", "posa"),
+("position", "fixed", "posf"),
+("position", "inherit", "posi"),
+("position", "relative", "posr"),
+("position", "static", "poss"),
 
-( "text-align", "left", "tal" ),
-( "text-align", "center", "tac" ),
-( "text-align", "right", "tar" ),
-( "text-align", "justify", "taj" ),
+("clear", "none", "cln"),
+("clear", "left", "cll"),
+("clear", "right", "clr"),
+("clear", "both", "clb"),
 
-( "display", "none", "dn" ),
-( "display", "block", "db" ),
-( "display", "flex", "df" ),
-( "display", "inline-flex", "dif" ),
-( "display", "inline", "di" ),
-( "display", "inline-block", "dib" ),
-( "display", "list-item", "dli" ),
-( "display", "run-in", "dri" ),
-( "display", "compact", "dcp" ),
-( "display", "table", "dtb" ),
-( "display", "inline-table", "ditb" ),
-( "display", "table-caption", "dtbcp" ),
-( "display", "table-column", "dtbcl" ),
-( "display", "table-column-group", "dtbclg" ),
-( "display", "table-header-group", "dtbhg" ),
-( "display", "table-footer-group", "dtbfg" ),
-( "display", "table-row", "dtbr" ),
-( "display", "table-row-group", "dtbrg" ),
-( "display", "table-cell", "dtbc" ),
-( "display", "ruby", "drb" ),
-( "display", "ruby-base", "drbb" ),
-( "display", "ruby-base-group", "drbbg" ),
-( "display", "ruby-text", "drbt" ),
-( "display", "ruby-text-group", "drbtg" );
+("text-align", "left", "tal"),
+("text-align", "center", "tac"),
+("text-align", "right", "tar"),
+("text-align", "justify", "taj"),
+
+("display", "none", "dn"),
+("display", "block", "db"),
+("display", "flex", "df"),
+("display", "inline-flex", "dif"),
+("display", "inline", "di"),
+("display", "inline-block", "dib"),
+("display", "list-item", "dli"),
+("display", "run-in", "dri"),
+("display", "compact", "dcp"),
+("display", "table", "dtb"),
+("display", "inline-table", "ditb"),
+("display", "table-caption", "dtbcp"),
+("display", "table-column", "dtbcl"),
+("display", "table-column-group", "dtbclg"),
+("display", "table-header-group", "dtbhg"),
+("display", "table-footer-group", "dtbfg"),
+("display", "table-row", "dtbr"),
+("display", "table-row-group", "dtbrg"),
+("display", "table-cell", "dtbc"),
+("display", "ruby", "drb"),
+("display", "ruby-base", "drbb"),
+("display", "ruby-base-group", "drbbg"),
+("display", "ruby-text", "drbt"),
+("display", "ruby-text-group", "drbtg");
 
 /* Declaring a variable for collect .column classes */
 $class-column: ".#{$selector-column}-#{$selector-mobile}-1, \
@@ -97,12 +103,12 @@ $class-column: ".#{$selector-column}-#{$selector-mobile}-1, \
 
 /* We can add margin-top to any element as gutter */
 .mt {
-	margin-top: $grid-gutter;
+	margin-top: $grid-gutter !important;
 }
 
 /* We can add margin-bottom to any element as gutter */
 .mb {
-	margin-bottom: $grid-gutter;
+	margin-bottom: $grid-gutter !important;
 }
 
 /* Container class for columns */
@@ -139,7 +145,7 @@ $class-column: ".#{$selector-column}-#{$selector-mobile}-1, \
 .#{$selector-visible}-#{$selector-mobileDevices}, 
 .#{$selector-visible}-#{$selector-personalComputers}, 
 .#{$selector-visible}-#{$selector-allDevices} {
-	display: none;
+	display: none !important;
 }
 
 /* Fix for .hidden classes */
@@ -151,7 +157,7 @@ $class-column: ".#{$selector-column}-#{$selector-mobile}-1, \
 .#{$selector-hidden}-#{$selector-mobileDevices}, 
 .#{$selector-hidden}-#{$selector-personalComputers}, 
 .#{$selector-hidden}-#{$selector-allDevices} {
-	display: block;
+	display: block !important;
 }
 
 /* Mixin for media queries */
@@ -172,20 +178,30 @@ $class-column: ".#{$selector-column}-#{$selector-mobile}-1, \
 }
 
 /* Declaring a variable for media queries loop */
-$screenResolutions: ( "Mobile", $selector-mobile, nil, $screen-mobile-max ), 
-					( "Tablet", $selector-tablet, $screen-tablet-min, $screen-tablet-max ), 
-					( "Computer", $selector-computer, $screen-computer-min, $screen-computer-max ), 
-					( "Largescreen", $selector-largescreen, $screen-largescreen-min, $screen-largescreen-max ), 
-					( "Widescreen", $selector-widescreen, $screen-widescreen-min, nil ),
-					( "Mobile devices", $selector-mobileDevices, nil, $screen-tablet-max ),
-					( "Personal computers", $selector-personalComputers, $screen-computer-min, nil ),
-					( "All devices", $selector-allDevices, 0, nil );
+$screenResolutions: ("Mobile", $selector-mobile, nil, $screen-mobile-max ), 
+					("Tablet", $selector-tablet, $screen-tablet-min, $screen-tablet-max ), 
+					("Computer", $selector-computer, $screen-computer-min, $screen-computer-max ), 
+					("Largescreen", $selector-largescreen, $screen-largescreen-min, $screen-largescreen-max ), 
+					("Widescreen", $selector-widescreen, $screen-widescreen-min, nil ),
+					("Mobile devices", $selector-mobileDevices, nil, $screen-tablet-max ),
+					("Personal computers", $selector-personalComputers, $screen-computer-min, nil ),
+					("All devices", $selector-allDevices, 0, nil );
 
 /* Loop for media queries */
 @each $screen, $selector, $min, $max in $screenResolutions {
 
 	/* #{$screen} */
 	@include mediaQueryCreator( $min, $max ) {
+
+		/* Creating .hidden classes */
+		.#{$selector-hidden}-#{$selector} {
+			display: none !important;
+		}
+
+		/* Creating .visible classes */
+		.#{$selector-visible}-#{$selector} {
+			display: block !important;
+		}
 
 		/* Loop for responsive classes */
 		@each $parameter, $value, $prefix in $classes {
