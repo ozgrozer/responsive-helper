@@ -1,5 +1,5 @@
 /* Grid settings */
-$grid-columns: 16;
+$grid-columns: 24;
 $grid-gutter: 30px;
 
 /* Screen resolutions */
@@ -49,6 +49,18 @@ $classes:
 ("text-align", "center", "tac"),
 ("text-align", "right", "tar"),
 ("text-align", "justify", "taj"),
+
+("padding", "0", "p-0"),
+("padding-top", "0", "pt-0"),
+("padding-right", "0", "pr-0"),
+("padding-bottom", "0", "pb-0"),
+("padding-left", "0", "pl-0"),
+
+("margin", "0", "m-0"),
+("margin-top", "0", "mt-0"),
+("margin-right", "0", "mr-0"),
+("margin-bottom", "0", "mb-0"),
+("margin-left", "0", "ml-0"),
 
 ("display", "none", "dn"),
 ("display", "block", "db"),
@@ -192,6 +204,16 @@ $screenResolutions: ("Mobile", $selector-mobile, nil, $screen-mobile-max ),
 
 	/* #{$screen} */
 	@include mediaQueryCreator( $min, $max ) {
+
+		/* We can add margin-top to any element as gutter */
+		.mt-#{$selector} {
+			margin-top: $grid-gutter !important;
+		}
+
+		/* We can add margin-bottom to any element as gutter */
+		.mb-#{$selector} {
+			margin-bottom: $grid-gutter !important;
+		}
 
 		/* Creating .hidden classes */
 		.#{$selector-hidden}-#{$selector} {
