@@ -11,7 +11,7 @@ There is no requirement.
 Just include the Responsive Helper CSS file in the `<head>` of your HTML document:
 
 ```html
-<link rel="stylesheet" href="responsiveHelper.min.css">
+<link rel="stylesheet" href="responsive-helper.min.css">
 ```
 
 ## Features
@@ -31,4 +31,4 @@ Soon.
 
 ## License
 
-Responsive Helper is licensed under the [MIT](https://github.com/ozgrozer/semanticHelper/blob/master/LICENCE).
+Responsive Helper is licensed under the MIT.
